@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
+import { skills } from "./skils";
 
 function App() {
   return (
@@ -29,19 +30,19 @@ function Intro() {
 function SkillList() {
   return (
     <div className="skill-list">
-      <Skill skill="HTML" level="Medium" emoji="👍" color="blue" />
-      <Skill skill="CSS" level="Medium" emoji="👍" color="blue" />
-      <Skill skill="JavaScript" level="Beginer" emoji="🙏" color="red" />
-      <Skill skill="React" level="Beginer" emoji="🙏" color="red" />
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+      ))}
     </div>
   );
 }
-function Skill(props) {
+function Skill({ skill, color, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <h2>{props.skill}</h2>
-      <h3>{props.level}</h3>
-      <h4>{props.emoji}</h4>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <li>
+        <span>{skill}</span>
+        <span>{level}</span>
+      </li>
     </div>
   );
 }
